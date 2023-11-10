@@ -11,6 +11,8 @@ interface State {
   }
   
  export default function reducer(state: State, action: Action) {
+  
+  
     const { type } = action;
     const prev = state;
   
@@ -27,11 +29,7 @@ interface State {
             ...state,
             currentCalc: prev.currentCalc + action.clicked,
             num: prev.num + action.clicked,
-            res: calculate(
-              prev.res,
-              Number(prev.num + action.clicked),
-              prev.sign
-            ),
+            // res:
           };
         }
       }
@@ -44,7 +42,7 @@ interface State {
           currentCalc: prev.currentCalc + action.clicked,
           num: "",
           sign: typeof action.clicked === "string" ? action.clicked : prev.sign,
-          res: prev.res === 0 ? Number(prev.num) : prev.res,
+          res: prev.res === 0 ? Number(prev.num) :  calculate(prev.res, Number(prev.num), prev.sign)
         };
       }
       case "=": {
@@ -52,6 +50,7 @@ interface State {
           ...state,
           sign: "",
           num: "",
+          res: calculate(prev.res, Number(prev.num), prev.sign)
         };
       }
     }

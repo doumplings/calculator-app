@@ -1,6 +1,6 @@
 import "./App.css";
 import ButtonGroup from "./components/ButtonGroup";
-import { useReducer } from "react";
+import { useReducer, useCallback } from "react";
 import reducer from "./ReducerFunction";
 
 function App() {
@@ -10,15 +10,15 @@ function App() {
     num: "",
     res: 0,
   });
-
-  const handleNumClick = (item: string) => {
+  console.log(state);
+  const handleNumClick = useCallback((item: string) => {
     console.log(" Handle Num Click called");
     dispatch({ type: "number", clicked: item });
-  };
+  }, []);
 
-  const handleSignClick = (sign: string) => {
+  const handleSignClick = useCallback((sign: string) => {
     dispatch({ type: "sign", clicked: sign });
-  };
+  }, []);
 
   const handleEqualClick = () => {
     dispatch({ type: "=" });
