@@ -1,4 +1,5 @@
 import "./ButtonGroup.css";
+import { memo } from "react";
 
 const buttonItems = [
   [7, 8, 9, "/"],
@@ -28,4 +29,4 @@ function ButtonGroup({ onButtonClick }: Props) {
   );
 }
 
-export default ButtonGroup;
+export default memo(ButtonGroup);
